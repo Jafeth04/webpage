@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navegación en tiempo real - Universidad</title>
+
+  <!-- Leaflet y Routing Machine -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="mapa.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <img src="/imagenes/uncsm2.png" alt="Logo" class="logo">
+      <h1>Mapa Universitario</h1>
+    </div>
+
+    <button id="menuToggle" class="menu-toggle" aria-label="Mostrar menú" aria-expanded="false">☰</button>
+
+    <nav class="nav">
+      <ul class="nav-links">
+        <li><a href="#">Edificio</a></li>
+        <li><a href="#">Facultades</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section>
+  <div class="map-container">
+    <div id="panel">
+      <input type="text" id="buscar" placeholder="Buscar edificio (Ej: Edificio P)">
+      <button id="buscarBtn">Buscar</button>
+      <button id="viajeBtn">Comenzar viaje</button>
+    </div>
+    <div id="map"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-col about">
+      <img src="imagenes/uncsm2.png" alt="Logo" class="footer-logo">
+      <p class="footer-desc">Mapa de la Universidad — información y rutas en tiempo real para estudiantes y visitantes.</p>
+    </div>
+
+    <div class="footer-col links">
+      <h4>Enlaces rápidos</h4>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Edificios</a></li>
+        <li><a href="#">Facultades</a></li>
+        <li><a href="#">Servicios</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col contact">
+      <h4>Contacto</h4>
+      <p>Email: <a href="mailto:info@Uncsm.edu">info@Uncsm.edu</a></p>
+      <p>Tel: +505</p>
+      <div class="social">
+        <a href="#" aria-label="Facebook" class="social-icon">f</a>
+        <a href="#" aria-label="Twitter" class="social-icon">t</a>
+        <a href="#" aria-label="Instagram" class="social-icon">ig</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Universidad Nacional Casimiro Sotelo Montenegro. Todos los derechos reservados.</p>
+    <a href="#top" class="back-to-top">Volver arriba ↑</a>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+<script src="mapa.js"></script>
+</body>
+</html>
