@@ -52,11 +52,13 @@ document.getElementById("viajeBtn").addEventListener("click", () => {
       const lat = pos.coords.latitude;
       const lng = pos.coords.longitude;
       const accuracy = pos.coords.accuracy;
-      if (accuracy > 15) return; // Solo actualizar si precisión < 15 m
+
+      // Filtrar posiciones poco precisas (>15 m)
+      if (accuracy > 15) return;
 
       const origen = [lat, lng];
 
-      // Marcador animado
+      // Marcador animado del usuario
       if (!marcadorUsuario) {
         const userIcon = L.divIcon({
           html: '<div class="user-marker"></div>',
@@ -81,7 +83,7 @@ document.getElementById("viajeBtn").addEventListener("click", () => {
         circuloPrecision.setRadius(accuracy);
       }
 
-      // Ruta
+      // Crear ruta sin panel
       if (rutaActual) map.removeControl(rutaActual);
       rutaActual = L.Routing.control({
         waypoints: [
@@ -92,13 +94,11 @@ document.getElementById("viajeBtn").addEventListener("click", () => {
         draggableWaypoints: false,
         addWaypoints: false,
         lineOptions: { styles: [{ color: "#00b894", opacity: 0.9, weight: 6, dashArray: "6,10" }] },
-        createMarker: () => null,
-        collapsible: true, // panel colapsable
+        createMarker: () => null, // No se crean marcadores adicionales
+        show: false               // Oculta el panel de indicaciones
       }).addTo(map);
 
-      // Minimizar panel por defecto
-      rutaActual.getContainer().style.display = "none";
-
+      // Centrar mapa
       map.setView(origen, 18);
     },
     (err) => {
@@ -108,17 +108,9 @@ document.getElementById("viajeBtn").addEventListener("click", () => {
   );
 });
 
-// Botón externo para mostrar/ocultar panel de indicaciones
-document.getElementById("togglePanel").addEventListener("click", () => {
-  if (!rutaActual) return;
-  const panel = rutaActual.getContainer();
-  panel.style.display = panel.style.display === "none" ? "block" : "none";
-});
-
 // Menú móvil
 document.getElementById("menuToggle").addEventListener("click", () => {
   const nav = document.querySelector(".nav");
   const expanded = nav.classList.toggle("active");
   document.getElementById("menuToggle").setAttribute("aria-expanded", expanded);
 });
-
